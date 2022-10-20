@@ -2,3 +2,5 @@ git init -- initialize repo, makes .git folder
 
 git branch -- allows for alteration of branches
 	-m rename (or move?) branch
+
+"git ignore" file tells git what to ignore when sending untrack messages
