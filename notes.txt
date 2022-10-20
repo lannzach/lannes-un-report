@@ -4,3 +4,5 @@ git branch -- allows for alteration of branches
 	-m rename (or move?) branch
 
 ".gitignore" file tells git what to ignore when tracking changes
+
+Learned how to use git, github, and unix shell
