@@ -1,0 +1,4 @@
+git init -- initialize repo, makes .git folder
+
+git branch -- allows for alteration of branches
+	-m rename (or move?) branch
