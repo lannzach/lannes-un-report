@@ -151,3 +151,16 @@ gapminder_co2 %>%
                           | country == "Mexico", "north", "south"))
 
 write_csv(gapminder_co2, "data/gapminder_co2.csv")
+
+
+gapminder_co2 <- gapminder_co2 %>%
+  rename("emissions_per_capita" = "Emissions per capita (metric tons of carbon dioxide)")
+
+#Analyzing and Plotting combined data
+ggplot(gapminder_co2) +
+  aes(x = gdpPercap, y = emissions_per_capita) +
+  geom_point() +
+  labs(x = "GDP (per capita)",
+       y = "CO2 emitted (per capita)",
+       title = "There is a strong association between a nation's GDP \nand
+       the amount of CO2 it produces") + geom_smooth(method = "lm")
