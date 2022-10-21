@@ -4,9 +4,3 @@ git branch -- allows for alteration of branches
 	-m rename (or move?) branch
 
 ".gitignore" file tells git what to ignore when tracking changes
-
-<<<<<<< HEAD
-git log --oneline provides quick summary of changes (hashes and commit messages)
-=======
-Learned how to use git, github, and unix shell
->>>>>>> 97a269a04264933c0f7745cffe0bcff9d29ba98e
