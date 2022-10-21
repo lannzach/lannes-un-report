@@ -1,0 +1,53 @@
+---
+title: "Writing Reports with R Markdown"
+author: "Z Lannes"
+date: "2022-10-21"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r packages, include=FALSE}
+library(tidyverse)
+library(here)
+library(knitr)
+```
+
+This report was prepared for the UN. It contains analyses of countries' GDP, life expectancy, and CO2 emissions. Our goal was to determine to what degree a country's economic strength or weakness may be related to its public health status and impact on climate change. We hypothesize that both life expectancy and CO2 emissions increase with a country's GDP.
+
+```{r data, include=FALSE}
+#here acts as a function that sets the working directory to the location of the .Rproj file
+gapminder_1997 <- read_csv(here("data/gapminder_1997.csv"))
+```
+
+```{R gdp_lifexp_1997, echo=FALSE}
+#echo=FALSE hides code, but not output
+ggplot(gapminder_1997, aes(x=gdpPercap,y=lifeExp,color=continent,size=pop/1000000)) + 
+  geom_point() +
+  labs(x="GDP Per Capita",y="Life Expectancy",title = "Life Expectancy Based on GDP Per Capita",size = "Population (in millions)")
+```
+
+```{r summary_data, include=FALSE}
+n_countries <- gapminder_1997 %>%
+  select(country) %>%
+  n_distinct()
+
+min_GDP <- summarize(gapminder_1997, round(min(gdpPercap)))
+
+max_GDP <- summarize(gapminder_1997,round(max(gdpPercap)))
+```
+The above plot shows the relationship between GDP per capita and life expectancy for a total of `r n_countries` countries. For this set, economic wealth ranged from minimum of `r min_GDP` to max of `r signif(max_GDP,6)` per capita
+
+| Summary of Data |
+|--------|--------|
+| Number of countries | `r n_countries`|
+| Miniumum GDP per cap | `r min_GDP` |
+| Maximum GDP per cap | `r max_GDP` |
+
+```{r tables}
+gapminder_1997 %>%
+  filter(continent == "Africa") %>%
+  kable()
+```
